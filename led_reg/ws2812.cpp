@@ -18,7 +18,7 @@
 #define delayLong	__builtin_avr_delay_cycles(C_Fosc * 8 / 1e7)
 #define delaySmall	__builtin_avr_delay_cycles(C_Fosc * 5 / 1e7)
 
-namespace ws2812
+/*namespace ws2812
 {
 	//
 	void SendByte(uint8_t byte)
@@ -58,5 +58,55 @@ namespace ws2812
 		for (uint8_t i=0; i<256; i++)
 			SendObj(i, i, i);
 		SendByte(11);
+	}
+}*/
+
+WS2812::WS2812(uint8_t len, sRGB* mass)
+{
+	this->lenLine = len;
+	this->mass = mass;
+}
+
+void WS2812::Reset()
+{
+	WS2812_Lo;
+	__delay_us(100);
+}
+
+#define  SendByte(byte)				\
+{									\
+	uint8_t mask = 1 << 7;			\
+	for (uint8_t i=0; i<8; i++)		\
+	{								\
+		if (byte & mask)			\
+		{							\
+			WS2812_Hi;				\
+			delayLong;				\
+			WS2812_Lo;				\
+			delaySmall;				\
+		}							\
+		else						\
+		{							\
+			WS2812_Hi;				\
+			delaySmall;				\
+			WS2812_Lo;				\
+			delayLong;				\
+		}							\
+		mask >>= 1;					\
+	}								\
+}
+#define SendObj(red, green, blue)	\
+{									\
+	SendByte(green)						\
+	SendByte(red)						\
+	SendByte(blue)						\
+}									\
+
+void WS2812::Interrupt()
+{
+	Reset();
+	for (uint8_t i=0; i<lenLine; i++)
+	{
+		SendObj(mass[i].red, mass[i].green, mass[i].blue)
 	}
 }

@@ -10,9 +10,23 @@
 #define __WS2812_H__
 #include "system/path.h"
 
-namespace ws2812
+typedef struct 
 {
-	void Init();
-}
+	uint8_t red;
+	uint8_t green;
+	uint8_t blue;
+} sRGB;
+
+class WS2812
+{
+public:
+	WS2812(uint8_t len, sRGB* mass);
+	void Interrupt();
+private:
+	uint8_t lenLine;
+	sRGB* mass;
+	void Reset();
+};
+
 
 #endif //__WS2812_H__

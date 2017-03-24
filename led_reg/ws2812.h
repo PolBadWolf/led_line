@@ -12,19 +12,21 @@
 
 typedef struct 
 {
-	uint8_t red;
-	uint8_t green;
-	uint8_t blue;
+	unsigned green : 8;
+	unsigned red   : 8;
+	unsigned blue  : 8;
 } sRGB;
 
 class WS2812
 {
 public:
-	WS2812(uint8_t len, sRGB* mass);
+	WS2812(uint8_t len, sRGB* mass, volatile uint8_t* ddr, volatile uint8_t* port, uint8_t mask);
 	void Interrupt();
-private:
 	uint8_t lenLine;
+private:
 	sRGB* mass;
+	volatile uint8_t* port;
+	uint8_t pMask;
 	void Reset();
 };
 

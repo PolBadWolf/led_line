@@ -162,6 +162,12 @@
     <Compile Include="system\path.h">
       <SubType>compile</SubType>
     </Compile>
+    <Compile Include="TIMER0.cpp">
+      <SubType>compile</SubType>
+    </Compile>
+    <Compile Include="TIMER0.h">
+      <SubType>compile</SubType>
+    </Compile>
     <Compile Include="ws2812.cpp">
       <SubType>compile</SubType>
     </Compile>

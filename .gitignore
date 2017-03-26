@@ -26,6 +26,16 @@
 *.exe
 *.out
 *.app
+#cc
+*.eep
+*.elf
+*.hex
+*.lss
+*.map
+*.srec
+*.d
+*.mk
+Makefile
 
 # =========================
 # Operating System Files

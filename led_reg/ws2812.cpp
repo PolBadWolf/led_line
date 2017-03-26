@@ -37,17 +37,17 @@ void WS2812::Interrupt()
 	CRITICAL_SECTION
 	{
 		Reset();
-		uint8_t* mm = (uint8_t *)mass;
-		for (uint8_t i=0; i<lenLine*3; i++)
+		volatile uint8_t* mm = (uint8_t*)(mass);
+		for (volatile uint8_t i=0; i<lenLine*3; i++)
 		{
-			uint8_t mask = 1<<7;
+			volatile uint8_t mask = 1<<7;
 			while (mask)
 			{
 				if ( *mm & mask)
 				{
 					WS2812_Hi;
 					mask >>= 1;
-					__delay_us10(6);
+					__delay_us10(8);
 					WS2812_Tg;
 				}
 				else

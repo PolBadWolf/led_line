@@ -24,7 +24,7 @@ public:
 	void Interrupt();
 	uint8_t lenLine;
 private:
-	volatile sRGB* mass;
+	sRGB* mass;
 	volatile uint8_t* port;
 	uint8_t pMask;
 	void Reset();

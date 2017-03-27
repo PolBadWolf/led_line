@@ -15,7 +15,7 @@ namespace ns_timer0
 	void Init()
 	{
 		TCCR0 = 0;
-		TCCR0 &= ~(1<<WGM10)
+		//TCCR0 &= ~(1<<WGM10)
 	}
 	ISR (TIMER0_OVF_vect)
 	{

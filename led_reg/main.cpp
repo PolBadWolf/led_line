@@ -15,7 +15,7 @@ WS2812* line1;
 int main(void)
 {
 	//__port(DDRB).bit7 = 1;
-	line1 = new WS2812(line1_len, line1_mass, &DDRB, &PORTB, 1<<0 );
+	line1 = new WS2812(line1_len, line1_mass, &DDRB, &PORTB, 1<<1 );
     while (1) 
     {
 		//__port(PORTB).bit7 = 0;

@@ -8,9 +8,9 @@
 
 #include "ws2812.h"
 
-#define WS2812_Hi	PORTB |=  (1<<0)
-#define WS2812_Lo	PORTB &= ~(1<<0)
-#define WS2812_Tg	PORTB ^=   1<<0)
+#define WS2812_Hi	PORTB |=  (1<<1)
+#define WS2812_Lo	PORTB &= ~(1<<1)
+#define WS2812_Tg	PORTB ^=   1<<1)
 
 #define __delay_us10(x)	__builtin_avr_delay_cycles(C_Fosc * x / 1e7)
 
